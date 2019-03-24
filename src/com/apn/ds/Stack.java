@@ -1,5 +1,7 @@
 package com.apn.ds;
 
+import com.apn.ds.Queue.Node;
+
 /**
  * Start 10:20
  * End   10:40
@@ -8,6 +10,17 @@ package com.apn.ds;
  */
 
 public class Stack {
+	
+
+	static class Node {
+		int value;
+		Node next;
+		
+		
+		public Node(int value) {
+			this.value = value;
+		}
+	}		
 	
 	private Node top;
 	

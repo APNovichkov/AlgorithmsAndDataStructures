@@ -13,7 +13,16 @@ package com.apn.ds;
 
 public class Queue {
 
-	
+
+	static class Node {
+		int value;
+		Node next;
+		
+		
+		public Node(int value) {
+			this.value = value;
+		}
+	}	
 	
 	private Node start;
 	private Node end;

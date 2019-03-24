@@ -1,14 +1,11 @@
 package com.apn.ds;
 
-
-
-public class Node {
+public class Node<T> {
+	public T value;
+	public Node<T> right;
+	public Node<T> left;
 	
-	int value;
-	Node next;
-	
-	
-	public Node(int value) {
+	public Node(T value) {
 		this.value = value;
 	}
 }

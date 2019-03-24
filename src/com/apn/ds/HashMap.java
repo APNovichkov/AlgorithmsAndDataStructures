@@ -180,7 +180,7 @@ public class HashMap<K,V> {
 	}
 	
 	public Iterator<V> values(){
-		return new ValueItarator();
+		return new ValueIterator();
 	}
 	
 	private int bucketIndex(K key) {
