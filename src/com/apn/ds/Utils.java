@@ -1,5 +1,7 @@
 package com.apn.ds;
 
+import java.util.Vector;
+
 import com.apn.alg.Visitor;
 
 public class Utils {
@@ -22,11 +24,24 @@ public class Utils {
 	public static <T> Visitor<T> buildPrintVisitor(){
 		
 		return new Visitor<T>() {
-
+			Vector<T> sequence = new Vector<>();
+			
 			@Override
 			public void visit(Node<T> node) {
+				sequence.add(node.value);
 				System.out.print(node.value);
 			}			
+			
+			@Override
+			public String toString() {
+				StringBuilder s = new StringBuilder();
+				
+				for(T value: sequence) {
+					s.append(value.toString());
+				}
+				
+				return s.toString();
+			}
 		};
 		
 		
