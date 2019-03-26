@@ -24,6 +24,7 @@ public class BtTraversalRecursiveTest {
 	public void testPreOrder() {
 		System.out.println("Pre-Order:");
 		BtTraversalRecursive.preOrder(root, visitor);
+		assertEquals("ABDEGCF", visitor.toString());
 		System.out.println();
 	}
 
@@ -31,6 +32,7 @@ public class BtTraversalRecursiveTest {
 	public void testPostOrder() {
 		System.out.println("Post-Order:");
 		BtTraversalRecursive.postOrder(root, visitor);
+		assertEquals("DGEBFCA", visitor.toString());
 		System.out.println();
 	}
 
@@ -38,6 +40,7 @@ public class BtTraversalRecursiveTest {
 	public void testInOrder() {
 		System.out.println("In-Order:");
 		BtTraversalRecursive.inOrder(root, visitor);
+		assertEquals("DBGEACF", visitor.toString());
 		System.out.println();
 	}
 
