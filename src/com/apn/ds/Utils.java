@@ -21,7 +21,7 @@ public class Utils {
 		return nodeA;
 	}
 	
-	public static <T> Visitor<T> buildPrintVisitor(){
+	public static <T> Visitor<T> buildAccumulatorVisitor(){
 		
 		return new Visitor<T>() {
 			Vector<T> sequence = new Vector<>();
@@ -45,6 +45,17 @@ public class Utils {
 		};
 		
 		
+	}
+	
+	
+	public static <T> Visitor<T> buildPrintVisitor(){
+		return new Visitor<T>() {
+			@Override
+			public void visit(Node<T> node) {
+				System.out.print(node.value);
+			}			
+			
+		};
 	}
 	
 }
