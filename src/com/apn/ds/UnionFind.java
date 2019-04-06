@@ -13,17 +13,24 @@ public class UnionFind {
 		}
 	}
 	
-	//what should find do? 
-	public int find(int node) {
+	//returns the index of the root that is connected to this node. 
+	public int find(int nodeIndex) {
 		
+		if(nodeIndex == disjointSet[nodeIndex]) return nodeIndex;
+		
+		int rootIndex = find(nodeIndex);
+		
+		return rootIndex;
 	}
 	
 	public void union(int node1, int node2) {
-		while(true) {
-			if(node1 == nodes.get(node1) && node2 == nodes.get(node2)) {
-				disjointSet[node2] = node1;
-				break;
-			}
+		int root1 = find(nodes.get(node1));
+		int root2 = find(nodes.get(node2));
+		
+		if (root1 != root2) {
+			disjointSet[root2] = root1;
+		}else {
+			System.out.println("Same root. No need to union");
 		}
 	}
 	
