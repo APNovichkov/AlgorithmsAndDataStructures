@@ -22,6 +22,8 @@ public class BinarySearchTree<T>{
 			}
 		}
 		
+		System.out.println("HI");
+		
 		return traversalNode.value;
 	}
 	
