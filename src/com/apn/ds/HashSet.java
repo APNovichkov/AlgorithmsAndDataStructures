@@ -12,7 +12,7 @@ public class HashSet<T> {
 		}
 	}
 	
-	final int CAPACITY = 1;
+	final int CAPACITY = 10;
 	Node<T>[] buckets;
 	
 	class SetIterator implements Iterator<T>{
@@ -66,6 +66,7 @@ public class HashSet<T> {
 	}
 	
 	public T remove(T value) {
+	
 		int index = bucketIndex(value);
 		
 		Node<T> pNode = null;		
