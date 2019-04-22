@@ -92,6 +92,7 @@ public class HashMap<K,V> {
 	
 	
 	final int CAPACITY = 1000;
+	private int size = 0;
 	Node<K, V>[] buckets;
 	
 	
@@ -103,11 +104,6 @@ public class HashMap<K,V> {
 	
 	//TODO
 	public int size() {
-		int size = 0;
-		KeyIterator iterator = new KeyIterator();
-		while(iterator.hasNext()) {
-			size++;
-		}
 		return size;
 	}
 	
@@ -117,13 +113,20 @@ public class HashMap<K,V> {
 		if(containsKey(key)) {
 			Node<K, V> tmpNode = buckets[index]; 
 			while(tmpNode != null) {
-				if(tmpNode.key == key) tmpNode.value = value;
+				if(tmpNode.key == key) {
+					tmpNode.value = value;
+					break;
+				}else {
+					tmpNode = tmpNode.next;
+				}
 			}
 		}else {
 			Node<K, V> node = new Node<K, V>(key, value);
 			node.next = buckets[index];
 			buckets[index] = node;
 		}
+		
+		size++;
 	}
 	
 	public V get(K key) {
@@ -171,6 +174,8 @@ public class HashMap<K,V> {
 				pNode = node.next;
 			}
 		}
+		
+		size--;
 		
 		return node != null ? node.value : null; 
 	}
