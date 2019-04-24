@@ -89,6 +89,14 @@ public class LinkedList<V> {
 	
 	public V removeFirst() {
 		V value = peekFirst();
+		
+		if(size == 1) {
+			start = null;
+			end = null;
+			size--;
+			return value;
+		}
+		
 		start = start.next;
 		start.prev = null;
 		size--;
@@ -97,6 +105,14 @@ public class LinkedList<V> {
 	
 	public V removeLast() {
 		V value = peekLast();
+		
+		if(size == 1) {
+			start = null;
+			end = null;
+			size--;
+			return value;
+		}
+		
 		end = end.prev;
 		end.next = null;
 		size--;
@@ -107,14 +123,33 @@ public class LinkedList<V> {
 	
 	public void addFirst(V value) {
 		Node node = new Node(value);
+		
+		//if linked list is empty
+		if(start == null) {
+			start = node;
+			end = node;
+			size++;
+			return;
+		}
+		
 		node.next = start;
 		start.prev = node;
 		start = node;
+		
 		size++;
 	}
 	
 	public void addLast(V value) {
 		Node node = new Node(value);
+		
+		//if linked list is empty
+		if(end == null) {
+			start = node;
+			end = node;
+			size++;
+			return;
+		}
+		
 		end.next = node;
 		node.prev = end;
 		end = node;
@@ -148,7 +183,10 @@ public class LinkedList<V> {
 			newNode.prev = nodeAtIndex.prev;
 			nodeAtIndex.prev.next = newNode;
 			nodeAtIndex.prev = newNode;
+			
+			size++;
 		}  
+		
 	}
 	
 	public V remove(int index) {
@@ -158,13 +196,19 @@ public class LinkedList<V> {
 			throw new RuntimeException("Index out of bounds");
 		}else if(size == 1 || index == 0) {
 			value = removeFirst();
-		}else if(index == size){ 
+			System.out.println("Removing First");
+		}else if(index == size-1){ 
 			value = removeLast();
+			System.out.println("Removing Last");
 		}else {
+			System.out.println("Removing from middle");
+			
 			Node nodeAtIndex = getNodeByIndex(index);
 			nodeAtIndex.prev.next = nodeAtIndex.next;
 			nodeAtIndex.next.prev = nodeAtIndex.prev;
 			value = nodeAtIndex.value;
+			
+			size--;
 		}  
 		
 		
@@ -172,8 +216,18 @@ public class LinkedList<V> {
 	}
 	
 	public V remove(V value) {
-		int index = getIndexByValue(value);
-		return remove(index);		
+		
+		System.out.println("removing by value: " + value);
+		
+		if(contains(value)) {
+			System.out.println("The value " + value + " is in the list");
+			int index = getIndexByValue(value);
+			System.out.println("I got this index for value " + value + ": " + index);
+			return remove(index);
+		}
+		
+		
+		return null;		
 	}
 	
 	public LinkedList<V> reverse() {				
@@ -197,10 +251,14 @@ public class LinkedList<V> {
 	}
 	
 	private int getIndexByValue(V value) {
+		System.out.println("Value is: " + value);
+		
 		int index;
 		Node node = start;
 		for(index = 0; index < size; index++) {
-			if(node.value == value) break;
+			if(node.value == value){
+				 break;
+			}
 			node = node.next;
 		}
 		
@@ -210,7 +268,8 @@ public class LinkedList<V> {
 	public boolean contains(V value) {
 		boolean contains = false;
 		
-		for(Node node = start; node.next != null; node = node.next) {
+		for(Node node = start; node != null; node = node.next) {
+			
 			if(node.value == value) {
 				contains = true;
 				break;
