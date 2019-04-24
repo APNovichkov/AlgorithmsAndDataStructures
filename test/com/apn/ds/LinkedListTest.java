@@ -146,6 +146,8 @@ public class LinkedListTest {
 		list.addLast(6);
 		list.addFirst(40);
 		
+		
+		
 		list.remove(2);
 		
 		assertTrue(!list.contains(6));
