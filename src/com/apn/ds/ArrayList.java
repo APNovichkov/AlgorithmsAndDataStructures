@@ -9,18 +9,19 @@ package com.apn.ds;
  *
  */
 
-public class ArrayList {
+public class ArrayList <V> {
 	
 	private final static int DEFAULT_CAPACITY = 100;
 	private final static int EXPAND_FACTOR = 2; 	
 	
-	private int[] values;
+	private V[] values;
 	private int capacity;
 	private int size;
 	
+	@SuppressWarnings("unchecked")
 	public ArrayList(int capacity) {
 		this.capacity = capacity;
-		this.values = new int[capacity];
+		this.values = (V[])new Object[capacity];
 		this.size = 0;
 	}
 	
@@ -32,21 +33,22 @@ public class ArrayList {
 		return size;
 	}
 	
-	public void add(int value) {
+	public void add(V value) {
 		ensureCapacity();
 		values[size] = value;
 		size++;
 	}
 	
-	public int get(int index) {
+	public V get(int index) {
 		if(index >= size) throw new IndexOutOfBoundsException("Index is out of range: " + index);  
 		return values[index];
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void ensureCapacity() {
 		if(size == capacity) {
 			capacity *= EXPAND_FACTOR;
-			int[] temp = new int[capacity];
+			V[] temp = (V[])new Object[capacity];
 			System.arraycopy(values, 0, temp, 0, size);		
 			values = temp;			
 		}
