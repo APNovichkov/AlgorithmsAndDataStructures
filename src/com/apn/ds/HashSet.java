@@ -10,6 +10,7 @@ public class HashSet<T> {
 		Node(T value){
 			this.value = value;
 		}
+		
 	}
 	
 	final int CAPACITY = 10;
