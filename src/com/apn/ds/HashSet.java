@@ -11,6 +11,7 @@ public class HashSet<T> {
 			this.value = value;
 		}
 		
+		
 	}
 	
 	final int CAPACITY = 10;
